@@ -157,15 +157,21 @@ const { contents: news } = await client.getList<News>({
             <li>
               <a href={`/news/${id}`} class="block">
                 <div>
-                  <Picture
-                    src={thumbnail.url}
-                    widths={[320, 640, 960]}
-                    aspectRatio={1}
-                    width={320}
-                    height={320}
-                    sizes="20rem"
-                    alt=""
-                  />
+                  {thumbnail && thumbnail.url ? (
+                    <Picture
+                      src={thumbnail.url}
+                      widths={[320, 640, 960]}
+                      aspectRatio={1}
+                      width={320}
+                      height={320}
+                      sizes="20rem"
+                      alt=""
+                    />
+                  ) : (
+                    <div class="placeholder" style="width: 320px; height: 320px; background-color: #ddd;">
+                      No Image Available
+                    </div>
+                  )}
                 </div>
                 <FormattedDate
                   class="mt-2 font-english text-sm font-extrabold sm:mt-4 sm:text-base"
